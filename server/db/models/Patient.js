@@ -13,12 +13,7 @@ const patientSchema = new Schema({
         required: true
     },
     ageGroup: {
-        begin:{
-            type: Number
-        },
-        end: {
-            type: Number
-        },
+        type: String,
         required: true
     },
     language: {
