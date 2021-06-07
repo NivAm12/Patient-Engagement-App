@@ -1,7 +1,8 @@
 import {connect, connection} from 'mongoose';
 import Option from './models/Option';
 import Patient from './models/Patient';
-import crypto from 'crypto';
+import uniqueId from 'uniqid';
+
 
 class DbHandler{
 
@@ -18,22 +19,18 @@ class DbHandler{
     async findOption(optionKey = null){
         const option = await Option.find({key: key});
 
-        if(!option) throw new Error("No such option");
-
         return option;
     }
 
     async findPatient(patientKey=null){
         const patientToFind = await Patient.find({key: patientKey});
 
-        if(!patientToFind) throw new Error("No such patient");
-
         return patientToFind;
     }
 
     async insertPatientAndReturn(patientToInsert) {
         // unique key for each patient:
-        const patientKey = crypto.randomBytes(16).toString("hex");
+        const patientKey = uniqueId();
 
         // create the new patient:
         let newPatientToAdd = new Patient({
@@ -44,8 +41,8 @@ class DbHandler{
             procedure: patientToInsert.procedure
         });
 
-        // save and return the newly added patient:
-        newPatientToAdd = await newPatientToAdd.save();
+        // save and return the newly added patient, if the patient already exists, then update his info:
+        newPatientToAdd = await Patient.findOneAndUpdate({key: patientKey}, newPatientToAdd, {upsert: true, new: true});
         return newPatientToAdd;
     }
 
