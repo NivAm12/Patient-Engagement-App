@@ -1,16 +1,22 @@
-import { connection, connect } from "mongoose";
-import Option from "./models/Option";
-import maleIcon from "./icons/gender/male.png";
-import femaleIcon from "./icons/gender/female.png";
-import youngIcon from "./icons/ageGroup/young.png";
-import adultIcon from "./icons/ageGroup/adult.png";
-import oldIcon from "./icons/ageGroup/old.png";
-import catarcatIcon from "./icons/procedure/catarcat.png";
-import catheterIcon from "./icons/procedure/catheter.png";
-import colonoscopyIcon from "./icons/procedure/colonoscopy.png";
-import precolonoscopyIcon from "./icons/procedure/preColonoscopy.png";
-import heartIcon from "./icons/procedure/heart.png";
-import pleuralTopIcon from "./icons/procedure/pleuralTop.png";
+import mongoose from "mongoose";
+import fs from "fs";
+const {connect, connection} = mongoose;
+import Option from "./models/Option.js";
+
+// icons:
+
+const maleIcon = fs.readFileSync( "./icons/gender/male.PNG", {encoding: 'base64'});
+const femaleIcon = fs.readFileSync( "./icons/gender/female.PNG", {encoding: 'base64'});
+const youngIcon = fs.readFileSync( "./icons/ageGroup/young.PNG", {encoding: 'base64'});
+const adultIcon = fs.readFileSync( "./icons/ageGroup/adult.PNG", {encoding: 'base64'});
+const oldIcon = fs.readFileSync( "./icons/ageGroup/old.PNG", {encoding: 'base64'});
+const cataractIcon = fs.readFileSync( "./icons/procedure/cataract.PNG", {encoding: 'base64'});
+const catheterIcon = fs.readFileSync( "./icons/procedure/catheter.PNG", {encoding: 'base64'});
+const colonoscopyIcon = fs.readFileSync( "./icons/procedure/colonoscopy.PNG", {encoding: 'base64'});
+const precolonoscopyIcon = fs.readFileSync( "./icons/procedure/preColonoscopy.PNG", {encoding: 'base64'});
+const heartIcon = fs.readFileSync( "./icons/procedure/heart.PNG", {encoding: 'base64'});
+const pleuralTopIcon = fs.readFileSync( "./icons/procedure/pleuralTop.PNG", {encoding: 'base64'});
+
 
 // data:
 const gender = [
@@ -30,15 +36,44 @@ const language = [
 ];
 const procedure = [
   { text: "Catheter", icon: catheterIcon },
-  { text: "Catheterization", icon: catarcatIcon },
+  { text: "Catheterization", icon: cataractIcon },
   { text: "Colonoscopy", icon: colonoscopyIcon },
   { text: "Pre Colonoscopy", icon: precolonoscopyIcon },
   { text: "Heart Failure", icon: heartIcon },
   { text: "Pleural Top", icon: pleuralTopIcon },
 ];
 
-const createOption = async(optionsData, key) =>{
-    
+const createDb = () => {
+  connectToDb();
+
+  // create the option for each type:
+  createOption(gender, "gender");
+  createOption(ageGroup, "ageGroup");
+  createOption(language, "language");
+  createOption(procedure, "procedure");
+}
+
+const createOption = async(optionsData, optionKey) =>{
+  const optionsToInsert = [];
+
+  optionsData.forEach(value => {
+    // let iconBuffer = null;
+
+    // if(value.icon) {
+    //   // make the image binary:
+    //   iconBuffer = value.icon.toString("base64");  
+    // }
+
+    optionsToInsert.push({text: value.text, icon: value.icon});  
+  });
+
+  // create the option doc:
+  const optionDoc = new Option({
+    key: optionKey,
+    options: optionsToInsert
+  });
+
+  await optionDoc.save();
 }
 
 const connectToDb = () => {
@@ -55,3 +90,5 @@ const connectToDb = () => {
     console.log("Database connected");
   });
 };
+
+createDb();

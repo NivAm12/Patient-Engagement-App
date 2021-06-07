@@ -1,7 +1,8 @@
-import {connect, connection} from 'mongoose';
-import Option from './models/Option';
-import Patient from './models/Patient';
+import mongoose from "mongoose";
+import Option from './models/Option.js';
+import Patient from './models/Patient.js';
 import uniqueId from 'uniqid';
+const {connect, connection} = mongoose;
 
 
 class DbHandler{
@@ -16,14 +17,13 @@ class DbHandler{
         return DbHandler.instance;
     }
 
-    async findOption(optionKey = null){
-        const option = await Option.find({key: key});
-
+    async findOption(optionKey = {}){
+        const option = await Option.find(optionKey);
         return option;
     }
 
-    async findPatient(patientKey=null){
-        const patientToFind = await Patient.find({key: patientKey});
+    async findPatient(patientKey = {}){
+        const patientToFind = await Patient.find(patientKey);
 
         return patientToFind;
     }

@@ -1,5 +1,5 @@
 import {Router} from "express";
-import DbHandler from '../../db/DbHandler';
+import DbHandler from '../../db/DbHandler.js';
 const router = Router();
 
 // HTTP REQUESTS:
@@ -15,10 +15,10 @@ router.get('/', async(req, res) => {
     }
 });
 
-router.get('/:patientId', async(req, res) => {
+router.get('/:patientKey', async(req, res) => {
     try{
         // find patient:
-        const patientToFind = await DbHandler.findPatient(req.params.patientId)[0];
+        const patientToFind = await DbHandler.findPatient({key: req.params.patientKey})[0];
 
         if(!patientToFind) res.status(404).send("The patient does not exists in our database");
 

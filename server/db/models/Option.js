@@ -1,5 +1,5 @@
-import { Schema, model } from "mongoose";
-
+import mongoose from "mongoose";
+const { Schema, model } = mongoose;
 
 // create the schame:
 const optionSchema = new Schema({
@@ -9,10 +9,7 @@ const optionSchema = new Schema({
     },
     options: [{
         text: String,
-        icon: {
-            data: Buffer,
-            contentType: String
-        }
+        icon: String
     }]
 });
 
