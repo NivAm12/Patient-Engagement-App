@@ -5,19 +5,29 @@ import { Schema, model } from "mongoose";
 const patientSchema = new Schema({
     key: {
         type: Number,
-        unique: true
+        unique: true,
+        required: true
     },
     gender: {
-        type: String
+        type: String,
+        required: true
     },
     ageGroup: {
-        type: String
+        begin:{
+            type: Number
+        },
+        end: {
+            type: Number
+        },
+        required: true
     },
     language: {
-        type: String
+        type: String,
+        required: true
     },
     procedure: {
-        type: String
+        type: String,
+        required: true
     }
 });
 
