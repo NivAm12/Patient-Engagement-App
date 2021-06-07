@@ -6,7 +6,7 @@ const router = Router();
 
 router.get('/', async(req, res) => {
     try{
-        // if optionKey is null it will return all the options:
+        // if optionKey is null it will return all of the options:
         const optionToFind = await DbHandler.findOption();
         res.send(optionToFind);
     }
