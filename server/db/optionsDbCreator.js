@@ -57,13 +57,6 @@ const createOption = async(optionsData, optionKey) =>{
   const optionsToInsert = [];
 
   optionsData.forEach(value => {
-    // let iconBuffer = null;
-
-    // if(value.icon) {
-    //   // make the image binary:
-    //   iconBuffer = value.icon.toString("base64");  
-    // }
-
     optionsToInsert.push({text: value.text, icon: value.icon});  
   });
 

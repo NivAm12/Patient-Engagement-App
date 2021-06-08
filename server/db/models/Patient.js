@@ -1,33 +1,39 @@
 import mongoose from "mongoose";
 const { Schema, model } = mongoose;
-
+import Joi from "joi";
 
 // create the schema:
 const patientSchema = new Schema({
     key: {
         type: Number,
         unique: true,
-        required: true
     },
     gender: {
         type: String,
-        required: true
     },
     ageGroup: {
         type: String,
-        required: true
     },
     language: {
         type: String,
-        required: true
     },
     procedure: {
         type: String,
-        required: true
     }
 });
 
 // create the model:
 const Patient = new model("Patient", patientSchema);
 
-export default Patient;
+// model validation:
+const patientValidation = (patientToValidate) => {
+    const joiSchema = Joi.object({
+        gender: Joi.string().required(),
+        ageGroup: Joi.string().required(),
+        language: Joi.string().required(),
+        procedure: Joi.string().required()
+    });
+
+    return joiSchema.validate(patientToValidate);
+}
+export {Patient, patientValidation};

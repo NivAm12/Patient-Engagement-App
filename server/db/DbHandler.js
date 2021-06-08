@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import Option from './models/Option.js';
-import Patient from './models/Patient.js';
+import {Patient, patientValidation} from './models/Patient.js';
 import uniqueId from 'uniqid';
 const {connect, connection} = mongoose;
 
@@ -24,13 +24,16 @@ class DbHandler{
 
     async findPatient(patientKey = {}){
         const patientToFind = await Patient.find(patientKey);
-
         return patientToFind;
     }
 
     async insertPatientAndReturn(patientToInsert) {
         // unique key for each patient:
         const patientKey = uniqueId();
+        
+        // validate the patient data:
+        const patientValidationResult = patientValidation(patientToInsert);
+        if(patientValidationResult.error != null) throw patientValidationResult.error;
 
         // create the new patient:
         let newPatientToAdd = new Patient({
@@ -41,8 +44,8 @@ class DbHandler{
             procedure: patientToInsert.procedure
         });
 
-        // save and return the newly added patient, if the patient already exists, then update his info:
-        newPatientToAdd = await Patient.findOneAndUpdate({key: patientKey}, newPatientToAdd, {upsert: true, new: true});
+        // save and return the newly added patient:
+        newPatientToAdd = await newPatientToAdd.save();
         return newPatientToAdd;
     }
 
