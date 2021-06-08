@@ -8,8 +8,8 @@ const router = Router();
 router.get('/', async(req, res) => {
     try{
         // if optionKey is null it will return all of the options:
-        const optionToFind = await DbHandler.findOption();
-        res.send(optionToFind);
+        const optionsToFind = await DbHandler.findOption();
+        res.send(optionsToFind);
     }
     catch(err){
         console.error(err);
@@ -24,7 +24,7 @@ router.get('/:optionKey', async(req, res) => {
 
         if(!optionToFind[0]) res.status(404).send("No such option to choose");
 
-        res.send(optionToFind);
+        res.send(optionToFind[0]);
     }
     catch(err){
         console.error(err);
