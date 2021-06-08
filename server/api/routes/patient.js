@@ -11,7 +11,7 @@ router.get('/', async(req, res) => {
     }
     catch(err){
         console.error(err);
-        res.status(500).send("Something went wrong...");
+        res.status(500).send(err.message);
     }
 });
 
@@ -26,20 +26,19 @@ router.get('/:patientKey', async(req, res) => {
     }
     catch(err){
         console.error(err);
-        res.status(500).send("Something went wrong...");
+        res.status(500).send(err.message);
     }
 });
 
 router.post('/', async(req, res) => {
     try{
-        // create or update a patient:
+        // create a new patient:
         const patientToCreate = await DbHandler.insertPatientAndReturn(req.body);
-
         res.send(patientToCreate);
     }
     catch(err){
         console.error(err);
-        res.status(500).send("Something went wrong...");
+        res.status(500).send(err.message);
     }
 });
 

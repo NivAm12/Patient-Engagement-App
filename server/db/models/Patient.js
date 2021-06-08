@@ -5,7 +5,7 @@ import Joi from "joi";
 // create the schema:
 const patientSchema = new Schema({
     key: {
-        type: Number,
+        type: String,
         unique: true,
     },
     gender: {
