@@ -11,8 +11,8 @@ export default function App() {
   useEffect(() =>{
     async function fetchData() {
       const {data} = await axios.get('http://192.168.1.20:5000/api/patientOptions/gender');
-      const iconToset = data.options[0].icon;
-      console.log(iconToset);
+      const iconToset = `data:image/png;base64,${data.options[1].icon}`;
+
       setIcon(iconToset)
     }
     fetchData();
@@ -21,8 +21,8 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <Image source={{uri: "data:image/png;base64,"+icon}}/>
+
+      <Image  style={{width: 150, height: 180}} source={{uri: icon}}/>
       <StatusBar style="auto" />
     </View>
   );
