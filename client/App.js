@@ -6,10 +6,8 @@ import Onboarding from "./components/Onboarding.js"
 import ResultScreen from "./components/ResultScreen.js"
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-//import {address} from "ip";
-
-
 import axios from "axios";
+//import { address } from 'ip';
 
 
 const Stack = createStackNavigator();
@@ -33,11 +31,12 @@ export default function App() {
         <Stack.Screen
           name="Landing"
           component={LandingScreen}
-          options={{ title: 'Welcome' }}
+          options={{ title: '', headerShown: false }}
         />
         <Stack.Screen
           name="Onboarding"
           component={Onboarding}
+          options={{ title: '', headerShown: true }}
         />
         <Stack.Screen
           name="Result"
