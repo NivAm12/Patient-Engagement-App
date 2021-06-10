@@ -3,8 +3,8 @@ import fs from "fs";
 const {connect, connection} = mongoose;
 import Option from "./models/Option.js";
 
-// icons:
 
+// icons:
 const maleIcon = fs.readFileSync( "./icons/gender/male.PNG", {encoding: 'base64'});
 const femaleIcon = fs.readFileSync( "./icons/gender/female.PNG", {encoding: 'base64'});
 const youngIcon = fs.readFileSync( "./icons/ageGroup/young.PNG", {encoding: 'base64'});
@@ -16,7 +16,6 @@ const colonoscopyIcon = fs.readFileSync( "./icons/procedure/colonoscopy.PNG", {e
 const precolonoscopyIcon = fs.readFileSync( "./icons/procedure/preColonoscopy.PNG", {encoding: 'base64'});
 const heartIcon = fs.readFileSync( "./icons/procedure/heart.PNG", {encoding: 'base64'});
 const pleuralTopIcon = fs.readFileSync( "./icons/procedure/pleuralTop.PNG", {encoding: 'base64'});
-
 
 // data:
 const gender = [
