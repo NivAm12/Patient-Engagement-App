@@ -2,10 +2,15 @@ import React from "react";
 import { StyleSheet, Text, View, Image, FlatList } from 'react-native';
 
 
-export default function Onboarding() {
+export default function Onboarding(props) {
+  console.log(props.options);
     return (
         <View style={styles.container}>
-          <Text>Onboarding</Text>
+          <FlatList
+            data={props.options}
+            renderItem={({item}) => <Text>{item.key}</Text>}
+            horizontal
+          />
         </View>
     );
 
