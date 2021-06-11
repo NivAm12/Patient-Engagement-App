@@ -12,7 +12,7 @@ export default function Onboarding(props) {
       });
 
       return optionsBarData;
-    } 
+    };
 
     return (
         <View style={styles.container}>
@@ -28,4 +28,7 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
     },
+    optionsBar: {
+      marginTop: 5
+    }
 });
