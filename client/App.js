@@ -16,7 +16,7 @@ export default function App() {
   useEffect(() =>{
     async function fetchData() {
       // get the options to choose for patient:
-      const {data} = await axios.get('http://10.0.2.2:5000/api/patientOptions')
+      const {data} = await axios.get('http://10.0.2.2:5000/api/patientOptions');
       setPatientOptions(data);
 
       // const {data} = await axios.get(`http://10.0.2.2:5000/api/patientOptions/gender`);
@@ -40,7 +40,7 @@ export default function App() {
           name="Onboarding"
           options={{ title: '', headerShown: true }}
         >
-          {props => <Onboarding options={patientOptions} />}
+          {() => <Onboarding options={patientOptions} />}
         </Stack.Screen>
         <Stack.Screen
           name="Result"

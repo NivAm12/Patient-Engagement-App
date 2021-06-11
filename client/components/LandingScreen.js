@@ -1,7 +1,7 @@
 import React from "react";
 import {Text, View, TouchableOpacity} from "react-native";
 import { Icon} from 'react-native-elements'
-import styles from '../style/LandingPage.js'
+import styles from '../style/LandingScreen.js'
 
 
 export default function LandingScreen({ navigation }) {

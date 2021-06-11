@@ -1,20 +1,24 @@
 import React from "react";
 import { StyleSheet, Text, View, Image, FlatList } from 'react-native';
-
+import OptionsBar from './OptionsBar.js';
 
 export default function Onboarding(props) {
-  console.log(props.options);
+    const createOptionsBarData = ()=> {
+      const optionsBarData = [];
+
+      // take the option title from the data:
+      props.options.forEach(({key}) => {
+        optionsBarData.push({title: key});
+      });
+
+      return optionsBarData;
+    } 
+
     return (
         <View style={styles.container}>
-          <FlatList
-            data={props.options}
-            renderItem={({item}) => <Text>{item.key}</Text>}
-            horizontal
-          />
+          <OptionsBar options={createOptionsBarData()}/>
         </View>
     );
-
-    
 }
 
 const styles = StyleSheet.create({
