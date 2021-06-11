@@ -18,7 +18,6 @@ export default function App() {
       // get the options to choose for patient:
       const {data} = await axios.get('http://10.0.2.2:5000/api/patientOptions');
       setPatientOptions(data);
-
       // const {data} = await axios.get(`http://10.0.2.2:5000/api/patientOptions/gender`);
       // const iconToset = `data:image/png;base64,${data.options[1].icon}`;
       
@@ -38,7 +37,7 @@ export default function App() {
         />
         <Stack.Screen
           name="Onboarding"
-          options={{ title: '', headerShown: true }}
+          options={{ title: '', headerShown: false }}
         >
           {() => <Onboarding options={patientOptions} />}
         </Stack.Screen>
