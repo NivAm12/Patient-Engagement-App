@@ -1,5 +1,6 @@
 import React from "react";
-import { StyleSheet, Text, View, Image, useWindowDimensions, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, useWindowDimensions, TouchableOpacity, Button } from 'react-native';
+import styles from '../style/OptionScreen.js';
 
 
 export default function OptionScreen(props) {  
@@ -14,7 +15,10 @@ export default function OptionScreen(props) {
                         source={{uri: `data:image/png;base64,${item.icon}`}}
                         style={styles.icon}
                         />
-                        <TouchableOpacity style={styles.textButton}>
+                        <TouchableOpacity
+                         style={styles.textButton}
+                         onPress={() => props.onOptionClick({key: props.option.key, choice: item.text})}
+                         >
                         <Text
                         style={styles.text}>{item.text}</Text>
                         </TouchableOpacity>
@@ -32,38 +36,3 @@ export default function OptionScreen(props) {
         </View>
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#fcde67',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
-    icon: {
-        width: 100,
-        height: 100,
-        marginTop: 20,
-        marginBottom: 10
-    },
-    optionList: {
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        alignItems: 'center',
-        flexWrap: 'wrap',
-        marginTop: 40
-    },
-    textButton: {
-        width: 140,
-        height: 60,
-        //marginTop: 10,
-        borderColor: "#fff",
-        justifyContent: "center",
-        alignItems: "center",
-        borderWidth: 5,
-        borderRadius: 5,
-        borderColor: '#42fa14',
-        borderStyle: 'dashed',
-        backgroundColor: "#3db7e3",
-    }
-});
