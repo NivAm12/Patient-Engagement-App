@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, Image, useWindowDimensions, TouchableOpacity, Button } from 'react-native';
+import { Text, View, Image, useWindowDimensions, TouchableOpacity } from 'react-native';
 import styles from '../style/OptionScreen.js';
 
 

@@ -1,44 +1,54 @@
-import {StyleSheet} from "react-native"
+import { StyleSheet} from 'react-native';
+
 
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: "#fcde67",
-      //alignItems: "center",
-      //justifyContent: "center",
+      backgroundColor: '#fcde67',
+      //alignItems: 'flex-start',
+      //justifyContent: 'center',
+      flexDirection: 'column',
+      marginTop: 30
     },
-    welcomeHeader: {
-      marginTop: 40,
+    header: {
       marginBottom: 30,
-      fontSize: 70,
+      fontSize: 50,
       fontWeight: 'bold',
       fontFamily: 'sans-serif-condensed',
-      marginLeft: 5,
     },
-    contentHeader: {
+    infoList: {
+      backgroundColor: '#fff',
+      borderRadius: 35,
+      borderColor: 'black',
+      borderWidth: 4,
+      borderStyle: 'dotted'
+    },
+    info: {
+      marginTop: 0,
+      marginBottom: 10,
       fontSize: 30,
-      alignItems: "center",
+      marginLeft: 15,
       fontFamily: 'sans-serif-condensed',
-      marginBottom: 40,
-      marginLeft: 5,
     },
     button: {
       width: 170,
-      height: 70,
+      height: 100,
       borderWidth: 3,
       borderColor: '#fff',
       justifyContent: 'center',
-      marginTop: 150,
       alignItems: 'center',
       marginLeft: 110,
       padding: 8,
       borderRadius: 100,
+      marginTop: 30,
       backgroundColor: '#5bccf6',
     },
     buttonTitle: {
-      fontSize: 22,
+      fontSize: 20,
       fontFamily: 'sans-serif-condensed',
-    },
-  });
+      marginTop: 15
+      
+    }
+});
 
 export default styles;

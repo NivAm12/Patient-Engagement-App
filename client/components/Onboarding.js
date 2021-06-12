@@ -10,21 +10,10 @@ export default function Onboarding(props) {
   
     const [endReached, setEndReached] = useState(false);
 
-    const createOptionsBarData = ()=> {
-      const optionsBarData = [];
-
-      // take the option title from the data:
-      props.options.forEach(({key}) => {
-        optionsBarData.push({title: key});
-      });
-
-      return optionsBarData;
-    };
-
     return (
         <View style={styles.container}>
-          {!endReached? <OptionsBar options={createOptionsBarData()}/>: null}
-          {/* <OptionsBar options={createOptionsBarData()}/> */}
+          {/* {!endReached? <OptionsBar options={props.barOptions}/>: null} */}
+          <OptionsBar options={props.barOptions}/>
           <FlatList
             data={props.options}
             horizontal

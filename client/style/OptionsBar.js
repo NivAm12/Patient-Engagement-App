@@ -6,9 +6,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#fcde67",
     flexDirection: "row",
     marginTop: 45,
-    //alignItems: "flex-end",
-    //display: "flex"
-    // justifyContent: "center",
   },
   barItem: {
     width: 95,
@@ -23,7 +20,8 @@ const styles = StyleSheet.create({
     backgroundColor: "#e34444",
   },
   barText: {
-    fontSize: 15,
+    fontSize: 13,
+    textAlign: 'center',
     fontFamily: "sans-serif-condensed",
   },
 });
