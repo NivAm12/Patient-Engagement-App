@@ -14,6 +14,7 @@ export default function App() {
   // DATA:
   const [patientOptions, setPatientOptions] = useState(null);
   const patientChoices = useRef([]);
+  const patientResult = useRef(null);
   const navigator = createRef();
 
   // METHODS:
@@ -44,22 +45,43 @@ export default function App() {
     patientChoices.current = [...patientChoicesCopy];
   }
 
-  const handlePatientSubmit = () => {
-    console.log(patientChoices.current);
+  const handlePatientSubmit = async() => {
     let isValidToSubmit = true;
 
+    // check if all of the options has been selected:
     patientOptions.forEach(option => {
       isValidToSubmit = patientChoices.current.find(item => item.key == option.key) == null ?
         false : isValidToSubmit;
     });
-    console.log(navigator.current)
 
+    // sent the results to the server and show them on result screen:
     if(isValidToSubmit){
-      console.log('in')
-      navigator.current.navigate('Landing')
+      await sendAndFetchNewPatient();
+      navigator.current.navigate('Result');
     }
-    else console.log('out')
   }
+
+  const sendAndFetchNewPatient = async() => {
+    try{
+      // create a new patient:
+      const dataToConvert = [];
+
+      patientChoices.current.map((item) => {
+        dataToConvert.push({[item.key]: item.choice});
+      });
+      const patientJson = Object.assign({}, ...dataToConvert);
+
+      // send and fetch the new patient:
+      let {data} = await axios.post('http://10.0.2.2:5000/api/patient', patientJson);
+      delete data["__v"];
+      delete data["_id"];
+      
+      patientResult.current = data;
+    }
+    catch(err){
+      console.log(err.message);
+    }
+  } 
 
   // RENDER:
   return (
@@ -85,8 +107,10 @@ export default function App() {
         </Stack.Screen>
         <Stack.Screen
           name="Result"
-          component={ResultScreen}
-        />
+          options={{ title: '', headerShown: false }}
+        >
+          {() => <ResultScreen data={patientResult.current}/>}
+          </Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
   );
