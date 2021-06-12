@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useRef} from 'react';
+import React, {useEffect, useState, useRef, createRef} from 'react';
 import LandingScreen from "./components/LandingScreen.js"
 import Onboarding from "./components/Onboarding.js"
 import ResultScreen from "./components/ResultScreen.js"
@@ -14,6 +14,7 @@ export default function App() {
   // DATA:
   const [patientOptions, setPatientOptions] = useState(null);
   const patientChoices = useRef([]);
+  const navigator = createRef();
 
   // METHODS:
   useEffect(() =>{
@@ -25,7 +26,7 @@ export default function App() {
     fetchData();
   }, [])
 
-  handlePatientChoice = (patientChoice) => {
+  const handlePatientChoice = (patientChoice) => {
     let patientChoicesCopy = [...patientChoices.current];
     
     // check if the choice already exists:
@@ -43,9 +44,26 @@ export default function App() {
     patientChoices.current = [...patientChoicesCopy];
   }
 
+  const handlePatientSubmit = () => {
+    console.log(patientChoices.current);
+    let isValidToSubmit = true;
+
+    patientOptions.forEach(option => {
+      isValidToSubmit = patientChoices.current.find(item => item.key == option.key) == null ?
+        false : isValidToSubmit;
+    });
+    console.log(navigator.current)
+
+    if(isValidToSubmit){
+      console.log('in')
+      navigator.current.navigate('Landing')
+    }
+    else console.log('out')
+  }
+
   // RENDER:
   return (
-    <NavigationContainer>
+    <NavigationContainer ref={navigator}>
       <Stack.Navigator>
         <Stack.Screen
           name="Landing"
@@ -57,7 +75,13 @@ export default function App() {
           name="Onboarding"
           options={{ title: '', headerShown: false }}
         >
-          {() => <Onboarding options={patientOptions} onOptionClick={handlePatientChoice}/>}
+          {() =>
+           <Onboarding
+            options={patientOptions}
+            onOptionClick={handlePatientChoice}
+            onSubmit={handlePatientSubmit}  
+            />
+          }
         </Stack.Screen>
         <Stack.Screen
           name="Result"

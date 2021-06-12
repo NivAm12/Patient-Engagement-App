@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import { View, FlatList } from 'react-native';
 import OptionsBar from './OptionsBar.js';
 import OptionScreen from "./OptionScreen.js";
-import OptionScreenSummarize from './OptionScreenSummarize.js';
+import OptionScreenSubmit from './OptionScreenSubmit.js';
 import styles from '../style/Onboarding.js';
 
 
@@ -23,14 +23,16 @@ export default function Onboarding(props) {
 
     return (
         <View style={styles.container}>
-          <OptionsBar options={createOptionsBarData()}/>
+          {!endReached? <OptionsBar options={createOptionsBarData()}/>: null}
+          {/* <OptionsBar options={createOptionsBarData()}/> */}
           <FlatList
             data={props.options}
             horizontal
             renderItem={({ item }) => <OptionScreen option={item} onOptionClick={props.onOptionClick}/>}
-            ListFooterComponent={() => <OptionScreenSummarize/>}
+            ListFooterComponent={() => <OptionScreenSubmit onSubmit={props.onSubmit}/>}
             pagingEnabled
             bounces={false}
+            onEndReached={()=> setEndReached(true)}
             showsHorizontalScrollIndicator
           />
         </View>

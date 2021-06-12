@@ -4,8 +4,8 @@ import { Icon} from 'react-native-elements'
 // import styles from '../style/LandingScreen.js'
 
 
-export default function OptionScreenSummarize({ navigation }) {
-    const {width, height} = useWindowDimensions();
+export default function OptionScreenSubmit(props) {
+  const {width} = useWindowDimensions();
 
   return (
     <View style={[styles.container, {width}]}>
@@ -13,7 +13,7 @@ export default function OptionScreenSummarize({ navigation }) {
       <Text style={styles.contentHeader}>Will as</Text>
       <TouchableOpacity
         // navigate to the desire point
-        onPress={() => navigation.navigate("Onboarding")}
+        onPress={() => props.onSubmit()}
         style={styles.button}
       >
         <Text style={styles.buttonTitle}>Lets get started</Text>
