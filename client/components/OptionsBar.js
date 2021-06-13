@@ -10,9 +10,12 @@ export default function OptionsBar(props) {
     if (Array.isArray(props.options)) {
       // create the bar items:
       return React.Children.toArray(props.options.map((item, index) => {
+        // mark the selected item:
+        let borderWidth = (index == props.selected && props.selected != null? 5 : 2);
+       
         return (
           <TouchableOpacity
-           style={styles.barItem}
+           style={[styles.barItem, {borderWidth}]}
            onPress={() => props.onClick(index)}
            >
             <Text

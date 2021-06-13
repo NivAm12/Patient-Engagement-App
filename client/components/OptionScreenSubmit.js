@@ -10,7 +10,7 @@ export default function OptionScreenSubmit(props) {
   return (
     <View style={[styles.container, {width}]}>
       <Text style={styles.header}>AMAZING! </Text>
-      <Text style={styles.content}>Were done, you can procced to get the full summary or scroll back and change the selections</Text>
+      <Text style={styles.content}>Were done, you can procced to get the full summary or get back and edit your selections</Text>
       <TouchableOpacity
         onPress={() => props.onSubmit()}
         style={styles.button}

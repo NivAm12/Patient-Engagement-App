@@ -9,8 +9,7 @@ const styles = StyleSheet.create({
   barItem: {
     width: 95,
     height: 70,
-    borderWidth: 2,
-    borderColor: "#fff",
+    borderColor: '#fff',
     justifyContent: "center",
     alignItems: "center",
     marginLeft: 5,
