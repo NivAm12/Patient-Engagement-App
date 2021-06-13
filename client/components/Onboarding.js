@@ -1,5 +1,5 @@
 import React, {useState, createRef} from "react";
-import { View, FlatList } from 'react-native';
+import { View, FlatList, useWindowDimensions } from 'react-native';
 import OptionsBar from './OptionsBar.js';
 import OptionScreen from "./OptionScreen.js";
 import OptionScreenSubmit from './OptionScreenSubmit.js';
@@ -7,9 +7,13 @@ import styles from '../style/Onboarding.js';
 
 
 export default function Onboarding(props) {
-  
-    const [endReached, setEndReached] = useState(false);
+    const {width} = useWindowDimensions();
     const scroller = createRef();
+
+    const scrollAndActiveItem = (patientChoice, indexToScroll) => {
+      scroller.current.scrollToOffset({offset: width * indexToScroll});
+      props.onOptionClick(patientChoice); 
+    }
 
     return (
         <View style={styles.container}>
@@ -22,11 +26,10 @@ export default function Onboarding(props) {
             renderItem={({ item, index }) =>
              <OptionScreen
               option={item}
-              onOptionClick={props.onOptionClick }/>}
+              onOptionClick={(patientChoice) => scrollAndActiveItem(patientChoice, index + 1)}/>}
             ListFooterComponent={() => <OptionScreenSubmit onSubmit={props.onSubmit}/>}
             pagingEnabled
             bounces={false}
-            onEndReached={()=> setEndReached(true)}
             showsHorizontalScrollIndicator
           />
         </View>
