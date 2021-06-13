@@ -51,7 +51,7 @@ export default function App() {
     
     // check if the choice already exists:
     const patientChoiceToUpdateIndex = patientChoicesCopy.findIndex(choice => choice.key === patientChoice.key);
-
+    console.log(patientChoice)
     if(patientChoiceToUpdateIndex != -1){
       // update the choice:
       patientChoicesCopy[patientChoiceToUpdateIndex].choice = patientChoice.choice;
@@ -107,7 +107,7 @@ export default function App() {
   }
 
   const resetData = () => {
-    patientChoices.current = null;
+    patientChoices.current = [];
     setBarOptions(createbarOptions());
     navigator.current.navigate('Landing');
   }
