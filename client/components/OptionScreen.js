@@ -6,9 +6,12 @@ import styles from '../style/OptionScreen.js';
 export default function OptionScreen(props) {  
     const {width} = useWindowDimensions();
     
+    // METHODS:
     const createOptionsView = () =>{
+        // check if it's valid to map the array:
         if(Array.isArray(props.option.options)){
             return React.Children.toArray(props.option.options.map((item) => {
+                // create the item:
                 return (
                     <View>
                         <Image 
@@ -28,6 +31,7 @@ export default function OptionScreen(props) {
         }
     };
 
+    // RENDER:
     return (
         <View style={styles.container, {width}}>
           <View style={styles.optionList}>

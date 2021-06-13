@@ -7,24 +7,30 @@ import styles from '../style/Onboarding.js';
 
 
 export default function Onboarding(props) {
+    // DATA:
     const {width} = useWindowDimensions();
     const [optionBarSelected, setOptionBarSelected] = useState(0);
     const scroller = createRef();
 
+    // METHODS:
     const scrollAndActiveItem = (patientChoice, indexToScroll) => {
+      // scroll to next screen:
       scroller.current.scrollToOffset({offset: width * indexToScroll});
+
+      // mark the option on the bar and trigger the listner action:
       setOptionBarSelected(indexToScroll);
       props.onOptionClick(patientChoice); 
     }
 
     const scrollOptionBar = (indexToScroll) => {
+      // scroll to the chosen screen:
       scroller.current.scrollToIndex({index: indexToScroll});
       setOptionBarSelected(indexToScroll);
     }
 
+    // RENDER:
     return (
         <View style={styles.container}>
-          {/* {!endReached? <OptionsBar options={props.barOptions}/>: null} */}
           <OptionsBar
            options={props.barOptions}
            onClick={scrollOptionBar}

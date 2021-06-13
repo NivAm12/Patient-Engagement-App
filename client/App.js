@@ -24,9 +24,14 @@ export default function App() {
 
   const fetchData = async() => {
     // get the options to choose for patient:
-    const {data} = await axios.get('http://10.0.2.2:5000/api/patientOptions');
-    patientOptions.current = data;
-    setBarOptions(createbarOptions());
+    try{
+      const {data} = await axios.get('http://10.0.2.2:5000/api/patientOptions');
+      patientOptions.current = data;
+      setBarOptions(createbarOptions());
+    }
+    catch(err){
+      console.log(err);
+    }
   }
 
   const createbarOptions = ()=> {

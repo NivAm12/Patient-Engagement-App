@@ -8,6 +8,7 @@ export default function ResultScreen(props) {
   const formatPatientData = () => {
     const formatedData = [];
 
+    // create the formeted data to display:
     Object.keys(props.data).map((key) => {
       formatedData.push(<Text style={styles.info}>{`${key.toLocaleUpperCase()}: ${props.data[key]}`}</Text>)
     });
