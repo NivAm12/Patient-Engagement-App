@@ -2,10 +2,9 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: "#fcde67",
-    flexDirection: "row",
     marginTop: 45,
+    flexDirection: 'row',
   },
   barItem: {
     width: 95,
@@ -16,6 +15,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginLeft: 5,
     padding: 8,
+    marginBottom: -35,
     borderRadius: 15,
     backgroundColor: "#e34444",
   },

@@ -1,4 +1,4 @@
-import React, {useState, createRef} from "react";
+import React, {useRef, createRef} from "react";
 import { View, FlatList, useWindowDimensions } from 'react-native';
 import OptionsBar from './OptionsBar.js';
 import OptionScreen from "./OptionScreen.js";
@@ -15,10 +15,17 @@ export default function Onboarding(props) {
       props.onOptionClick(patientChoice); 
     }
 
+    const scrollOptionBar = (indexToScroll) => {
+      console.log(indexToScroll);
+    }
+
     return (
         <View style={styles.container}>
           {/* {!endReached? <OptionsBar options={props.barOptions}/>: null} */}
-          <OptionsBar options={props.barOptions}/>
+          <OptionsBar
+           options={props.barOptions}
+           onClick={scrollOptionBar}
+           />
           <FlatList
             data={props.options}
             horizontal
