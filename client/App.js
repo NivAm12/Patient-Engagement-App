@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef, createRef } from "react";
 import LandingScreen from "./components/LandingScreen.js";
 import Onboarding from "./components/Onboarding.js";
+import {Alert} from 'react-native';
 import ResultScreen from "./components/ResultScreen.js";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -31,6 +32,7 @@ export default function App() {
     }
     catch(err){
       console.log(err);
+      Alert.alert("Error while connecting to the server");
     }
   }
 
@@ -103,6 +105,7 @@ export default function App() {
     }
     catch(err){
       console.log(err.message);
+      Alert.alert(err.message);
     }
   }
 
