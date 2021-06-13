@@ -12,7 +12,7 @@ Patient Engagement is a mobile application, that its purpose is to create a user
 
 ## Client side:
 • React   
-• React-Native
+• React-Native    
 • Axios    
 
 # Application showcase: 
