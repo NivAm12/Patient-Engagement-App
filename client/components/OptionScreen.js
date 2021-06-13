@@ -8,7 +8,7 @@ export default function OptionScreen(props) {
     
     const createOptionsView = () =>{
         if(Array.isArray(props.option.options)){
-            return props.option.options.map((item) => {
+            return React.Children.toArray(props.option.options.map((item) => {
                 return (
                     <View>
                         <Image 
@@ -24,7 +24,7 @@ export default function OptionScreen(props) {
                         </TouchableOpacity>
                     </View>
                 );
-            });
+            }));
         }
     };
 

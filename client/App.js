@@ -43,7 +43,7 @@ export default function App() {
   const handlePatientChoice = (patientChoice) => {
     let patientChoicesCopy = [...patientChoices.current];
     let barOptionsCopy = [...barOptions];
-
+    
     // check if the choice already exists:
     const patientChoiceToUpdateIndex = patientChoicesCopy.findIndex(choice => choice.key === patientChoice.key);
 
@@ -51,7 +51,6 @@ export default function App() {
       // update the choice:
       patientChoicesCopy[patientChoiceToUpdateIndex].choice = patientChoice.choice;
       barOptionsCopy[patientChoiceToUpdateIndex].title = patientChoice.choice;
-      console.log(barOptionsCopy);
     }
     else{
       // create the choice object:

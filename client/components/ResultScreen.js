@@ -12,7 +12,7 @@ export default function ResultScreen(props) {
       formatedData.push(<Text style={styles.info}>{`${key.toLocaleUpperCase()}: ${props.data[key]}`}</Text>)
     });
 
-    return formatedData;
+    return React.Children.toArray(formatedData);
   }
     return (
         <View style={styles.container}>

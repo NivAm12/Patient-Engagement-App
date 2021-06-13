@@ -8,14 +8,14 @@ export default function OptionsBar(props) {
   const createBarItems = () => {
     // check if it's valid to map the object:
     if (Array.isArray(props.options)) {
-      return props.options.map((item) => {
+      return React.Children.toArray(props.options.map((item) => {
         return (
           <TouchableOpacity style={styles.barItem}>
             <Text
              style={styles.barText}>{item.title.toUpperCase()}</Text>
           </TouchableOpacity>
         );
-      });
+      }));
     }
   };
 

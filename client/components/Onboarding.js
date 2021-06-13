@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, createRef} from "react";
 import { View, FlatList } from 'react-native';
 import OptionsBar from './OptionsBar.js';
 import OptionScreen from "./OptionScreen.js";
@@ -9,6 +9,7 @@ import styles from '../style/Onboarding.js';
 export default function Onboarding(props) {
   
     const [endReached, setEndReached] = useState(false);
+    const scroller = createRef();
 
     return (
         <View style={styles.container}>
@@ -17,7 +18,11 @@ export default function Onboarding(props) {
           <FlatList
             data={props.options}
             horizontal
-            renderItem={({ item }) => <OptionScreen option={item} onOptionClick={props.onOptionClick}/>}
+            ref={scroller}
+            renderItem={({ item, index }) =>
+             <OptionScreen
+              option={item}
+              onOptionClick={props.onOptionClick }/>}
             ListFooterComponent={() => <OptionScreenSubmit onSubmit={props.onSubmit}/>}
             pagingEnabled
             bounces={false}
